@@ -43,7 +43,7 @@ input_df = pd.DataFrame([input_dict])
 output=[]
 # output=""
 # Load the Model back from file
-filename = 'my_model.pkl'
+filename = 'rfr.pkl'
 with open(filename, 'rb') as file:  
       model = pickle.load(file)
 
