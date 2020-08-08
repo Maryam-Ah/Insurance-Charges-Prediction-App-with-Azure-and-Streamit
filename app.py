@@ -35,36 +35,61 @@ if st.checkbox('Smoker'):
     smoker = 'yes'
 else:
     smoker = 'no'
-region = st.selectbox('Region', ['southwest', 'northwest', 'northeast', 'southeast'])    
+    
+region = st.selectbox('Region', ['southwest', 'northwest', 'northeast', 'southeast'])
 input_dict = {'age' : age, 'sex' : sex, 'bmi' : bmi, 'children' : children, 'smoker' : smoker, 'region' : region}
 input_df = pd.DataFrame([input_dict])
 
 
-output=[]
-# output=""
-# Load the Model back from file
-filename = 'rfr.pkl'
-with open(filename, 'rb') as file:  
-      model = pickle.load(file)
 
-        
-        
-st.subheader('Class Labels and their corresponding index number')
-label_name = np.array(['Age',
-    'Sex','BMI','Children','Smoker'])
+add_selectbox = st.sidebar.selectbox(
+    "How would you like to predict?",
+    ("Random Forest Regressior", "Linear Regressior"))
 
-st.write(label_name)                        
-                        
-if st.button("Predict"):
-            output = predict(model=model, input_df=input_df)
-            output = int(output[0])
-
-
-st.success('The output is : {}'.format(label_name[output]))
+# output=[]
+output=""
+# ...................................................
+if add_selectbox == 'Random Forest Regressior':
     
+    
+     # Load the Model back from file
+    filename = 'rfr.pkl'
+    with open(filename, 'rb') as file:  
+        model = pickle.load(file)
+
+                       
+                        
+    if st.button("Predict"):
+             output = predict(model=model, input_df=input_df)
+             output = '$' + str(output[0])
 
 
+    st.success('The output is : {}'.format(output))
+    
+# ..........................................
+if add_selectbox == 'Linear Regressior':
+    
+    filename = 'lr.pkl'
+    with open(filename, 'rb') as file:  
+        model = pickle.load(file)
+
+                      
+                        
+    if st.button("Predict"):
+             output = predict(model=model, input_df=input_df)
+             output = '$' + str(output[0])
 
 
+    st.success('The output is : {}'.format(output))
+
+
+    
+    
+    
+    
+    
+    
+    
+    
 # if __name__ == '__main__':
 #     run()
