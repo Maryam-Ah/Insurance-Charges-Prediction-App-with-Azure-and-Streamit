@@ -35,7 +35,7 @@ if st.checkbox('Smoker'):
     smoker = 'yes'
 else:
     smoker = 'no'
-    
+region = st.selectbox('Region', ['southwest', 'northwest', 'northeast', 'southeast'])    
 input_dict = {'age' : age, 'sex' : sex, 'bmi' : bmi, 'children' : children, 'smoker' : smoker, 'region' : region}
 input_df = pd.DataFrame([input_dict])
 
