@@ -81,9 +81,9 @@ if add_selectbox == 'Random Forest Regressior':
     st.success('The output is : {}'.format(output))
     
 # ..........................................
-if add_selectbox == 'Linear Regressior':
+if add_selectbox == 'GradientBoosting, StandardScalerWrapper':
     
-    filename = 'lr.pkl'
+    filename = 'model.pkl'
     with open(filename, 'rb') as file:  
         model = pickle.load(file)
 
