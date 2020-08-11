@@ -63,7 +63,7 @@ add_selectbox = st.sidebar.selectbox(
 # output=[]
 output=""
 # ...................................................
-if add_selectbox == ' Forest Regressior':
+if add_selectbox == 'Random Forest Regressior':
     
     
      # Load the Model back from file
