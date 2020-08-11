@@ -7,6 +7,6 @@ joblib
 sklearn
 scipy
 azureml
-inference_schema
+azureml-sdk[notebooks,automl]
 anaconda
 
