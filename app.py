@@ -24,13 +24,13 @@ import numpy as np
 import pandas as pd
 # from sklearn.externals import joblib
 
-# import azureml.automl.core
-# from azureml.automl.core.shared import logging_utilities, log_server
-# from azureml.telemetry import INSTRUMENTATION_KEY
+import azureml.automl.core
+from azureml.automl.core.shared import logging_utilities, log_server
+from azureml.telemetry import INSTRUMENTATION_KEY
 
-# from inference_schema.schema_decorators import input_schema, output_schema
-# from inference_schema.parameter_types.numpy_parameter_type import NumpyParameterType
-# from inference_schema.parameter_types.pandas_parameter_type import PandasParameterType
+from inference_schema.schema_decorators import input_schema, output_schema
+from inference_schema.parameter_types.numpy_parameter_type import NumpyParameterType
+from inference_schema.parameter_types.pandas_parameter_type import PandasParameterType
 
 
 
@@ -58,7 +58,7 @@ input_df = pd.DataFrame([input_dict])
 
 add_selectbox = st.sidebar.selectbox(
     "How would you like to predict?",
-    ("Random Forest Regressior", "Linear Regressior"))
+    ("Random Forest Regressior", "Linear Regressior","GradientBoosting, StandardScalerWrapper"))
 
 # output=[]
 output=""
@@ -81,9 +81,9 @@ if add_selectbox == 'Random Forest Regressior':
     st.success('The output is : {}'.format(output))
     
 # ..........................................
-if add_selectbox == 'GradientBoosting, StandardScalerWrapper':
+if add_selectbox == 'Linear Regressior':
     
-    filename = 'model.pkl'
+    filename = 'lr.pkl'
     with open(filename, 'rb') as file:  
         model = pickle.load(file)
 
