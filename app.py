@@ -16,7 +16,21 @@ from sklearn.model_selection import RandomizedSearchCV
 from sklearn.ensemble import RandomForestRegressor
 from scipy.stats import randint
 from sklearn.model_selection import GridSearchCV
+import json
+import logging
+import os
+import pickle
+import numpy as np
+import pandas as pd
+# from sklearn.externals import joblib
 
+import azureml.automl.core
+from azureml.automl.core.shared import logging_utilities, log_server
+from azureml.telemetry import INSTRUMENTATION_KEY
+
+from inference_schema.schema_decorators import input_schema, output_schema
+from inference_schema.parameter_types.numpy_parameter_type import NumpyParameterType
+from inference_schema.parameter_types.pandas_parameter_type import PandasParameterType
 
 
 
@@ -84,7 +98,23 @@ if add_selectbox == 'Linear Regressior':
 
 
     
+# ..........................................
+if add_selectbox == 'GradientBoosting, StandardScalerWrapper':
     
+    filename = 'model.pkl'
+    with open(filename, 'rb') as file:  
+        model = pickle.load(file)
+
+                      
+                        
+    if st.button("Predict"):
+             output = predict(model=model, input_df=input_df)
+             output = '$' + str(output[0])
+
+
+    st.success('The output is : {}'.format(output))
+
+
     
     
     

@@ -1,8 +1,13 @@
+sklearn
 streamlit
 pandas
 numpy
 scikit-learn
 matplotlib
 joblib 
-
+pickle
 scipy
+azureml
+inference_schema
+anaconda
+conda-forge
