@@ -1,11 +1,10 @@
-sklearn
 streamlit
 pandas
 numpy
 scikit-learn
 matplotlib
 joblib 
-
+sklearn
 scipy
 azureml
 inference_schema
