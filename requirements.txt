@@ -10,4 +10,4 @@ scipy
 azureml
 inference_schema
 anaconda
-conda-forge
+
