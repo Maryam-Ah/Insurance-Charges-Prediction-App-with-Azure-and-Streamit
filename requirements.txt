@@ -7,6 +7,6 @@ joblib
 sklearn
 scipy
 azureml
-azureml-sdk[notebooks,automl]
+
 anaconda
 
