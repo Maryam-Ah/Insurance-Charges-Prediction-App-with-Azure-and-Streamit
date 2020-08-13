@@ -9,7 +9,7 @@ import pickle
 import math
 from sklearn.metrics import mean_squared_error 
 from sklearn.metrics import mean_absolute_error
-
+from sklearn.svm import SVR
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.pipeline import Pipeline
@@ -68,7 +68,7 @@ input_df = pd.DataFrame([input_dict],index=np.arange(len(input_dict)),columns = 
 
 add_selectbox = st.sidebar.selectbox(
     "How would you like to predict?",
-    ("Random Forest Regressior", "Linear Regressior","GradientBoosting"))
+    ("Random Forest Regressior", "Support Vector Regression","GradientBoosting"))
 
 
 
@@ -107,9 +107,9 @@ if add_selectbox == 'Random Forest Regressior':
     st.success('The output is : {}'.format(output))
     
 # ..........................................
-if add_selectbox == 'Linear Regressior':
+if add_selectbox == 'Support Vector Regression':
     
-    filename = 'lrm.pkl'
+    filename = 'svr.pkl'
     with open(filename, 'rb') as file:  
         model = pickle.load(file)
 
