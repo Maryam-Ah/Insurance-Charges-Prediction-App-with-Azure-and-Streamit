@@ -6,6 +6,7 @@ from sklearn import model_selection
 from sklearn.linear_model import LinearRegression
 import joblib 
 import pickle
+import math
 from sklearn.metrics import mean_squared_error 
 from sklearn.metrics import mean_absolute_error
 
@@ -100,7 +101,7 @@ if add_selectbox == 'Random Forest Regressior':
     if st.button("Predict"):
             data_prep = Pickled_data_prepration.transform(input_df)
             output = predict(model=model, input_df=data_prep)
-            output = '$' + str(output[0])
+            output = '$' + str(math.trunc(output[0]))
 
 
     st.success('The output is : {}'.format(output))
@@ -117,7 +118,7 @@ if add_selectbox == 'Linear Regressior':
     if st.button("Predict"):
             data_prep = Pickled_data_prepration.transform(input_df)
             output = predict(model=model, input_df=data_prep)
-            output = '$' + str(output[0])
+            output = '$' + str(math.trunc(output[0]))
 
 
     st.success('The output is : {}'.format(output))
@@ -136,7 +137,7 @@ if add_selectbox == 'GradientBoosting':
     if st.button("Predict"):
             data_prep = Pickled_data_prepration.transform(input_df)
             output = predict(model=model, input_df=data_prep)
-            output = '$' + str(output[0])
+            output = '$' + str(math.trunc(output[0]))
 
 
     st.success('The output is : {}'.format(output))
