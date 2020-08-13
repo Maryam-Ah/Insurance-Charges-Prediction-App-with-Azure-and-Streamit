@@ -20,7 +20,6 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.ensemble import RandomForestRegressor
 from scipy.stats import randint
-from PIL import Image
 from sklearn.model_selection import GridSearchCV
 import json
 import logging
@@ -31,8 +30,8 @@ import os
 
 
 
-
-image = Image.open('image-smile.png')
+from PIL import Image
+image = Image.open('image-smile.png').convert('RGB')
 st.sidebar.image(image,use_column_width=True)
 
 
