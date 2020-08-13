@@ -8,4 +8,4 @@ joblib
 scipy
 azureml
 anaconda
-conda-forge
+
