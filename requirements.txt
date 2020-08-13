@@ -1,12 +1,14 @@
+sklearn
 streamlit
 pandas
 numpy
 scikit-learn
 matplotlib
 joblib 
-sklearn
+pickle
 scipy
 azureml
 
-anaconda
 
+anaconda
+conda-forge
