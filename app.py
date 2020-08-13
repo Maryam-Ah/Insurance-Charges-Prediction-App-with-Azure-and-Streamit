@@ -30,9 +30,9 @@ import os
 
 
 
-from PIL import Image
-image = Image.open('insurance.jpg')
-st.sidebar.image(image,use_column_width=True)
+# from PIL import Image
+# image = Image.open('insurance.jpg')
+# st.sidebar.image(image,use_column_width=True)
 
 
 
