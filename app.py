@@ -35,7 +35,7 @@ except ImportError:
 # load the image
 image = Image.open('image-smile.png').convert('RGB')
 # st.sidebar.image(image,use_column_width=True)
-
+st.title("Insurance Charges Prediction App")
 
 
 Prediction = st.radio("Choose the action: ",("Predict on the training data","Predict on a new data"))
@@ -52,7 +52,7 @@ if Prediction == 'Predict on a new data':
     categorical_features = ['sex', 'smoker', 'region']
     numerical_features= ['age', 'bmi', 'children']
 
-    st.title("Insurance Charges Prediction App")
+
     age = st.number_input('Age', min_value=1, max_value=100, value=25)
     sex = st.radio("Sex",("male","female"),key='sex')
     # sex = st.selectbox('Sex', ['male', 'female'])
