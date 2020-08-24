@@ -8,4 +8,6 @@ joblib
 scipy
 azureml
 anaconda
+seaborn
+
 
