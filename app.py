@@ -242,15 +242,15 @@ if Prediction == 'Predict on the training data':
          # ...................................................
         if Regressior == 'Random Forest Regressior':
             st.subheader("Model Hyperparameters (Regularization parameter)")
-            n_lowest_estimators = st.number_input("Lowest number of estimators (between 2 -30)", 2,30,step=1,key='n_lowest_estimators')
+            # n_lowest_estimators = st.number_input("Lowest number of estimators (between 2 -30)", 2,30,step=1,key='n_lowest_estimators')
             n_highest_estimators = st.number_input("Highest number of estimators (between 3 -31) ", 3,31,step=1,key='n_highest_estimators')
             
-            n_lowest_features = st.number_input("Lowest number of features (between 1 -3)", 1,3,step=1,key='n_lowest_features')
+            # n_lowest_features = st.number_input("Lowest number of features (between 1 -3)", 1,3,step=1,key='n_lowest_features')
             n_highest_features = st.number_input("Highest number of features (between 2 -4)", 2,4,step=1,key='n_highest_features')
             
             param_distribs = {
-                    'n_estimators': randint(low=n_lowest_estimators, high=n_highest_estimators),
-                    'max_features': randint(low=n_lowest_features, high=n_highest_features),
+                    'n_estimators': randint(low=1, high=n_highest_estimators),
+                    'max_features': randint(low=1, high=n_highest_features),
                 }
 
             forest_reg = RandomForestRegressor(random_state=42)
