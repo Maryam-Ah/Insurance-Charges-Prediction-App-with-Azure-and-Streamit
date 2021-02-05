@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "secondkbuckuster-e8f4"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "secondkbuckuster-e8f4"
+  template:
+    metadata:
+      labels:
+        app: "secondkbuckuster-e8f4"
+    spec:
+      containers:
+        - name: "secondkbuckuster-e8f4"
+          image: "generalcontainerregister.azurecr.io/secondkbuckuster"
+          ports:
+          - containerPort: 80
