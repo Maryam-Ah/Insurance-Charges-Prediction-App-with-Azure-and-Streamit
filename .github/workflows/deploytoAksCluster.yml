@@ -1,0 +1,50 @@
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - uses: azure/docker-login@v1
+      with:
+        login-server: generalcontainerregister.azurecr.io
+        username: ${{ secrets.acr_generalcontainerregister_username }}
+        password: ${{ secrets.acr_generalcontainerregister_password }}
+    
+    - name: Build and push image to ACR
+      id: build-image
+      run: |
+        docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t generalcontainerregister.azurecr.io/secondkbuckuster:${{ github.sha }}
+        docker push generalcontainerregister.azurecr.io/secondkbuckuster:${{ github.sha }}
+    
+    - uses: azure/k8s-set-context@v1
+      with:
+         kubeconfig: ${{ secrets.aks_secondkbuckuster_kubeConfig }}
+      id: login
+    
+    - name: Create namespace
+      run: |
+        namespacePresent=`kubectl get namespace | grep secondkbuckuster9642 | wc -l`
+        if [ $namespacePresent -eq 0 ]
+        then
+            echo `kubectl create namespace secondkbuckuster9642`
+        fi
+
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: secondkbuckuster9642
+        container-registry-url: generalcontainerregister.azurecr.io
+        container-registry-username: ${{ secrets.acr_generalcontainerregister_username }}
+        container-registry-password: ${{ secrets.acr_generalcontainerregister_password }}
+        secret-name: secondkbuckudockerauth
+       
+    - uses: azure/k8s-deploy@v1.2
+      with:
+        namespace: secondkbuckuster9642
+        manifests: |
+          manifests/deployment.yml
+          manifests/service.yml
+        images: |
+          generalcontainerregister.azurecr.io/secondkbuckuster:${{ github.sha }}
+        imagepullsecrets: |
+          secondkbuckudockerauth
