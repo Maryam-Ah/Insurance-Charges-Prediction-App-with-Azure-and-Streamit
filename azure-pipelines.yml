@@ -1,0 +1,35 @@
+trigger:
+  branches:
+    include:
+    - refs/heads/master
+  paths:
+    include:
+    - /
+  batch: True
+name: $(date:yyyyMMdd)$(rev:.r)
+jobs:
+- job: Phase_1
+  displayName: Agent job 1
+  timeoutInMinutes: 0
+  pool:
+    vmImage: ubuntu-16.04
+  steps:
+  - checkout: self
+  - task: UsePythonVersion@0
+    displayName: Use Python 3.x
+  - task: Docker@1
+    displayName: Build an image
+    inputs:
+      azureSubscriptionEndpoint: 4f67400a-b051-4d82-8cbe-160db24e4381
+      azureContainerRegistry: generalcontainerregister.azurecr.io
+      dockerFile: Dockerfile
+      imageName: generalcontainerregister.azurecr.io/generalkubcluster7318:$(Build.BuildId)
+      useDefaultContext: false
+  - task: Docker@1
+    displayName: Push an image
+    inputs:
+      azureSubscriptionEndpoint: 4f67400a-b051-4d82-8cbe-160db24e4381
+      azureContainerRegistry: generalcontainerregister.azurecr.io
+      command: Push an image
+      dockerFile: ''
+      imageName: generalcontainerregister.azurecr.io/generalkubcluster7318:$(Build.BuildId)
